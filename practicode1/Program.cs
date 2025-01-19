@@ -105,7 +105,7 @@ void ProcessDirectory(string directoryPath, string language, FileInfo output, bo
                 if (fileExtensions.Contains(fileExtension))
                 {
                     Console.WriteLine($"Found file: {item}, Extension: {fileExtension}");
-                    AppendFileContentToOutput(item, language, output, note, orderType, remove, author);
+                    AppendFileContentToOutput(item,  output, note,  remove, author);
                     Console.WriteLine();
                     Console.WriteLine();
                 }
@@ -168,7 +168,7 @@ List<string> finalLang(string s, List<string> fileExtensions)
 }
 
 
-void AppendFileContentToOutput(string filePath, string language, FileInfo output, bool includeSoutceNote, string orderType, bool remove, string author)
+void AppendFileContentToOutput(string filePath, FileInfo output, bool includeSoutceNote, bool remove, string author)
 {
     if (!filePath.Contains("bin") && !filePath.Contains("debug"))
     {
