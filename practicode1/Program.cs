@@ -5,7 +5,7 @@ using System.IO;
 
 
 ///הערה: עשיתי שהמשתמש יוכל לפתוח את שורת הפקודה הכללית וממנה להקליד מקום ממנו לקרא את התיקיות והקבצים ומקום שבו רוצה לשמור את הקובץ המקובץ
-var languagesList = new List<string>//in order to chech validation of the lang 
+var languagesList = new List<string>//in order to check validation of the lang 
 {
     "c#" ,"java", "sql" , "angular" , "react" ,"assembler" , "c" , "c++" , "python"
 };
