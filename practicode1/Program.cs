@@ -3,58 +3,6 @@ using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
 
-List<string> finalLang(string s, List<string> fileExtensions)
-{
-    List<string> result = new List<string>();
-    //string[] languagesArray = new string[fileExtensions.Count > 0 ? fileExtensions.Count : 1];
-    //    if(!s.Contains(","))
-    //    languagesArray[0] = s;
-    //else
-    //   languagesArray = s.Split(",") ;
-    string[] languagesArray = s.Contains(',') ? s.Split(",") : new[] { s };
-    foreach (string language in languagesArray)
-    {
-        switch (language.Trim().ToLower())
-        {
-            case "c++":
-                result.Add(".cpp");
-                result.Add(".h");
-                break;
-
-            case "python":
-                result.Add(".py");
-                break;
-
-            case "c#":
-                result.Add(".cs");
-                result.Add(".sln");
-                break;
-
-            case "java":
-                result.Add(".java");
-                break;
-
-            case "react":
-                result.AddRange(new[] { ".ts", ".js", ".html", ".css", ".tsx", ".jsx" });
-                break;
-
-            case "angular":
-                result.AddRange(new[] { ".ts", ".js", ".html", ".css" });
-                break;
-
-            case "sql":
-                result.Add(".sql");
-                break;
-
-            default:
-                Console.WriteLine($"ERROR: {language} is not a valid language. Returning empty list.");
-                return fileExtensions;
-        }
-    }
-    return result;
-}
-
-
 
 ///הערה: עשיתי שהמשתמש יוכל לפתוח את שורת הפקודה הכללית וממנה להקליד מקום ממנו לקרא את התיקיות והקבצים ומקום שבו רוצה לשמור את הקובץ המקובץ
 var languagesList = new List<string>//in order to chech validation of the lang 
@@ -112,6 +60,51 @@ bundleCommand.SetHandler((string directoryPath, string language, FileInfo output
     }
 
 }, pathOption, bundleOptionLanguages, bundleOptionOutput, bundleOptionNote, bundleOptionSort, bundleOptionRemoveLines, bundleOptionAuthor);
+List<string> finalLang(string s, List<string> fileExtensions)
+{
+    List<string> result = new List<string>();
+    string[] languagesArray = s.Contains(',') ? s.Split(",") : new[] { s };
+    foreach (string language in languagesArray)
+    {
+        switch (language.Trim().ToLower())
+        {
+            case "c++":
+                result.Add(".cpp");
+                result.Add(".h");
+                break;
+
+            case "python":
+                result.Add(".py");
+                break;
+
+            case "c#":
+                result.Add(".cs");
+                result.Add(".sln");
+                break;
+
+            case "java":
+                result.Add(".java");
+                break;
+
+            case "react":
+                result.AddRange(new[] { ".ts", ".js", ".html", ".css", ".tsx", ".jsx" });
+                break;
+
+            case "angular":
+                result.AddRange(new[] { ".ts", ".js", ".html", ".css" });
+                break;
+
+            case "sql":
+                result.Add(".sql");
+                break;
+
+            default:
+                Console.WriteLine($"ERROR: {language} is not a valid language. Returning empty list.");
+                return fileExtensions;
+        }
+    }
+    return result;
+}
 
 void ProcessDirectory(string directoryPath, string language, FileInfo output, bool note, string orderType, bool remove, string author)
 {
